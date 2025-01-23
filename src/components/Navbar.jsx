@@ -1,20 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar shadow-sm fixed z-50 backdrop-blur-xl bg-white/30">
             <div className="flex-1">
-                <a className="btn btn-ghost text-xl">Coffee House</a>
+                <Link to="/" className="btn btn-ghost text-xl">
+                    Coffee House
+                </Link>
             </div>
             <div className="flex-none">
+
                 <ul className="menu menu-horizontal px-1 gap-2">
-                    <Link to="/">
-                    <button className="btn">Home</button>
-                    </Link>
-                    <Link to="/coffees"><button className="btn">Coffees</button></Link>
-                    <Link to="/dashboard"><button className="btn">Dashboard</button></Link>
-                    
+                    <NavLink to="/" className={({ isActive }) => `btn btn-sm ${isActive ? 'text-white bg-amber-600' : ''}`}>
+                        Home
+                    </NavLink>
+                    <NavLink to="/coffees" className={({ isActive }) => `btn btn-sm ${isActive ? 'text-white bg-amber-600' : ''}`}>
+                        Coffees
+                    </NavLink>
+                    <NavLink to="/dashboard" className={({ isActive }) => `btn btn-sm ${isActive ? 'text-white bg-amber-600' : ''}`}>
+                        Dashboard
+                    </NavLink>
                 </ul>
             </div>
         </div>
