@@ -26,7 +26,7 @@ const Coffees = () => {
                     <button onClick={() => handleSort('rating')} className="btn btn-xs sm:btn-sm md:btn-md mr-2">Sort By Rating</button>
                 </div>
             </div>
-            <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-4 gap-4 my-4">
+            <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-4 gap-6 my-4">
                 {coffees.map(coffee => <CoffeeCard key={coffee.id} coffee={coffee}></CoffeeCard>)}
             </div>
         </>
