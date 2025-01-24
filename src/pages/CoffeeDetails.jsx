@@ -7,17 +7,23 @@ const CoffeeDetails = () => {
     const allCoffeeData = useLoaderData();
 
     const [coffee, setCoffee] = useState({});
+    const [isFavorite, setIsFavorite] = useState(false)
 
     const { category, image, name, origin, popularity, rating, type, making_process, description, ingredients } = coffee;
 
     useEffect(() => {
         const singleCoffee = allCoffeeData.find(coffee => coffee.id == id);
         setCoffee(singleCoffee);
+        const favorites = getAllFavorites();
+        const isExist = favorites.find(favorite => favorite.id == singleCoffee.id);
+        if (isExist) {
+            setIsFavorite(true);
+        }
     }, [allCoffeeData, id])
 
-    const handleAddFavorite = (coffee) =>{
+    const handleAddFavorite = (coffee) => {
         addFavorite(coffee);
-
+        setIsFavorite(true)
     }
 
     return (
@@ -27,8 +33,8 @@ const CoffeeDetails = () => {
             </div>
             <div className="px-2">
                 <div className="p-4 m-4 flex justify-between items-center">
-                <h1 className="text-4xl font-semibold"> Coffee Name: {name}</h1>
-                <button onClick={() => handleAddFavorite(coffee)} className="btn btn-lg btn-warning text-white">Add to Favorites</button>
+                    <h1 className="text-4xl font-semibold"> Coffee Name: {name}</h1>
+                    <button onClick={() => handleAddFavorite(coffee)} disabled={isFavorite} className="btn btn-lg btn-warning text-white">Add to Favorites</button>
                 </div>
                 <div className="px-4 mx-4">
                     <div className="text-2xl font-semibold text-neutral-400 pt-2">
@@ -42,8 +48,8 @@ const CoffeeDetails = () => {
                     </div>
                 </div>
                 <div className="px-4 py-2 mx-4 flex text-orange-600">
-                    {ingredients ? (ingredients.map((ingredient, id)=> <p className="pr-2" key={id}>#{ingredient}</p>)): ''}
-                    
+                    {ingredients ? (ingredients.map((ingredient, id) => <p className="pr-2" key={id}>#{ingredient}</p>)) : ''}
+
                 </div>
                 <div className="mx-2 mb-12">
                     <div className="shadow-xl p-6 text-lg rounded-lg">
