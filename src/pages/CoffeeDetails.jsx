@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addFavorite, getAllFavorites } from "../utils/localStorage";
 
 const CoffeeDetails = () => {
     const { id } = useParams();
@@ -14,6 +15,11 @@ const CoffeeDetails = () => {
         setCoffee(singleCoffee);
     }, [allCoffeeData, id])
 
+    const handleAddFavorite = (coffee) =>{
+        addFavorite(coffee);
+
+    }
+
     return (
         <div className="container mx-auto border-2 border-neutral-200 m-4 rounded-lg">
             <div className="p-4 m-4">
@@ -22,7 +28,7 @@ const CoffeeDetails = () => {
             <div className="px-2">
                 <div className="p-4 m-4 flex justify-between items-center">
                 <h1 className="text-4xl font-semibold"> Coffee Name: {name}</h1>
-                <button className="btn btn-lg btn-warning text-white">Add to Favorites</button>
+                <button onClick={() => handleAddFavorite(coffee)} className="btn btn-lg btn-warning text-white">Add to Favorites</button>
                 </div>
                 <div className="px-4 mx-4">
                     <div className="text-2xl font-semibold text-neutral-400 pt-2">
