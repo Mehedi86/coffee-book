@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <div className="navbar shadow-sm fixed z-50 backdrop-blur-xl bg-white/30">
             <div className="flex-1">
-                <Link to="/" className="btn btn-ghost text-xl">
+                <Link to="/" className="btn btn-ghost md:text-xl">
                     Coffee House
                 </Link>
             </div>

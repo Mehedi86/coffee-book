@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
+import CoffeeCard from "./CoffeeCard";
 
 const CoffeeCards = () => {
     const { category } = useParams();
@@ -20,10 +21,10 @@ const CoffeeCards = () => {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg: lg:grid-cols-3">
-                {coffees.map(coffee => <p key={coffee.id}>{coffee.name}</p>)}
+            <div className="container mx-auto px-2 grid grid-cols-1 md:grid-cols-4 gap-4 my-4">
+                {coffees.map(coffee => <CoffeeCard key={coffee.id} coffee={coffee}></CoffeeCard>)}
             </div>
-            <button className="btn" onClick={()=> navigate('/coffees')}>View All</button>
+            <button className="btn" onClick={() => navigate('/coffees')}>View All</button>
         </>
 
     );
